@@ -8,6 +8,8 @@ Access: Fast and direct by index (constant time).
 Insertion/Removal: Slow, as it requires shifting other elements.
  */
 
+import java.util.Arrays;
+
 public class Array {
 
     /* The need for arrays is to create a single object with multiple elements
@@ -66,5 +68,35 @@ public class Array {
         } else {
             throw new Exception("Array is full, cannot add more elements");
         }
+    }
+
+    /*
+        Method to return the Array length
+     */
+
+    public int size(){
+        return this.nextIndex;
+    }
+
+    /*
+        Utility for printing all elements of the array.
+     */
+
+    @Override
+    public String toString() {
+
+        String s = "[";
+
+        for (int i = 0; i < this.nextIndex-1; i++) { // the iteration will run until the second to last number, in order to not put a comma after the last.
+            s += this.elements[i];
+            s += ", ";
+        }
+
+        if (this.nextIndex > 0) {
+            s += this.elements[this.nextIndex-1]; // The last one will be appended just here.
+        }
+
+        s += "]";
+        return s;
     }
 }
