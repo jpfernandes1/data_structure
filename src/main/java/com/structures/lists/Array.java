@@ -99,4 +99,14 @@ public class Array {
         s += "]";
         return s;
     }
+
+    /*
+        Search method to get an element by its index.
+     */
+    public String search(int index){
+        if(!(index < this.nextIndex && index >= 0)) { // Any index out of the array limits, or available but empty will throw an error
+          throw new IllegalArgumentException("Posição inválida");
+        }
+          return this.elements[index];
+    }
 }
