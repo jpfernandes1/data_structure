@@ -8,19 +8,25 @@ Access: Fast and direct by index (constant time).
 Insertion/Removal: Slow, as it requires shifting other elements.
  */
 
-public class Array {
+/*
+    To make sure the instance of the list will be on the same type,
+    instead using Object[] lets use Generics --> <T>
+
+ */
+
+public class Array<T> {
 
     /* The need for arrays is to create a single object with multiple elements
        instead of creating many variables.
 
-    String element1 = 'a';
-    String element2 = 'b';
-    String element3 = 'c';
-    String element4 = 'd';
+    Object element1 = 'a';
+    Object element2 = 'b';
+    Object element3 = 'c';
+    Object element4 = 'd';
 
      It's better to manage and manipulate in array format:
 
-     String[] elements = new String[8]; // define array size in declaration
+     Array<String> elements = new Array<String>[8]; // define array size in declaration
      elements[0] = 'a';
      elements[1] = 'b';
      elements[2] = 'c';
@@ -28,14 +34,24 @@ public class Array {
 
      Other advantages:
      This array is iterable, which facilitates reading, editing, and even allows calculations
-     like average, sum, etc. (for numeric arrays) and element counting.. */
+     like average, sum, etc. (for numeric arrays) and element counting...
+      */
 
-    private String[] elements;
+    // We could use the Object[] type to create the array, but this would allow the insertion of different data
+    // types into the same array, and would violate the main rule: Vectors are arrays of elements of the same type.
+    // So we'll use T:
+    private T[] elements;
     private int size; // Added to constructor
 
     // Instantiate array
     public Array(int capacity) {
-        this.elements = new String[capacity];
+        /*
+            Em Java, não é possível criar arrays genéricos diretamente com new T[capacity]
+            Os generics em Java usam type erasure - isso significa que as informações de tipo
+            genérico são removidas durante a compilação e não estão disponíveis em tempo de execução.
+            Em runtime, T se torna Object, logo o  compilador não poderá determinar qual tipo concreto usar para criar o array.
+         */
+        this.elements = (T[]) new Object[capacity]; // Casting
         this.size = 0;
     }
 
@@ -58,7 +74,7 @@ public class Array {
      Solution: create a new attribute that indicates the next position to be filled (pointer);
      */
 
-    public void add(String element) throws Exception {
+    public void add(T element) throws Exception {
         if (this.size < this.elements.length) {
             // Will proceed only if the array still has an empty position (hasn't reached maximum size)
             this.elements[size] = element;
@@ -101,7 +117,7 @@ public class Array {
     /*
         Search method to get an element by its index.
      */
-    public String search(int index){
+    public T search(int index){
         if(!(index <= this.size && index >= 0)) { // Any index out of the array limits, or available but empty will throw an error
           throw new IllegalArgumentException("Posição inválida");
         }
@@ -111,7 +127,7 @@ public class Array {
     /*
         Method to verify if an element exists
      */
-    public boolean search(String element){
+    public boolean search(T element){
         for(int i=0; i<this.size(); i++){ // sequential search
             if(this.elements[i].equals(element)){
                 return true;
@@ -124,7 +140,7 @@ public class Array {
         Method for adding an element at a given index;
      */
 
-    public void add(int index, String element) {
+    public void add(int index, T element) {
 
         increasesCapacity();
 
@@ -143,7 +159,7 @@ public class Array {
 
     private void increasesCapacity() {
         if(this.size == this.elements.length) {
-            String[] newElements = new String[this.elements.length * 2];
+            T[] newElements = (T[]) new Object[this.elements.length * 2];
             for (int i = 0; i < this.elements.length; i++) {
                 newElements[i] = this.elements[i];
             }
