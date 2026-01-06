@@ -74,14 +74,11 @@ public class Array<T> {
      Solution: create a new attribute that indicates the next position to be filled (pointer);
      */
 
-    public void add(T element) throws Exception {
-        if (this.size < this.elements.length) {
-            // Will proceed only if the array still has an empty position (hasn't reached maximum size)
-            this.elements[size] = element;
-            this.size++;
-        } else {
-            throw new Exception("Array is full, cannot add more elements");
-        }
+    public void add(T element) {
+       increasesCapacity();
+       this.elements[size] = element;
+       this.size++;
+
     }
 
     /*
