@@ -8,8 +8,6 @@ Access: Fast and direct by index (constant time).
 Insertion/Removal: Slow, as it requires shifting other elements.
  */
 
-import java.util.Arrays;
-
 public class Array {
 
     /* The need for arrays is to create a single object with multiple elements
@@ -33,12 +31,12 @@ public class Array {
      like average, sum, etc. (for numeric arrays) and element counting.. */
 
     private String[] elements;
-    private int nextIndex; // Added to constructor
+    private int size; // Added to constructor
 
     // Instantiate array
     public Array(int capacity) {
         this.elements = new String[capacity];
-        this.nextIndex = 0;
+        this.size = 0;
     }
 
     /* Add Element to array
@@ -61,10 +59,10 @@ public class Array {
      */
 
     public void add(String element) throws Exception {
-        if (this.nextIndex < this.elements.length) {
+        if (this.size < this.elements.length) {
             // Will proceed only if the array still has an empty position (hasn't reached maximum size)
-            this.elements[nextIndex] = element;
-            this.nextIndex++;
+            this.elements[size] = element;
+            this.size++;
         } else {
             throw new Exception("Array is full, cannot add more elements");
         }
@@ -75,7 +73,7 @@ public class Array {
      */
 
     public int size(){
-        return this.nextIndex;
+        return this.size;
     }
 
     /*
@@ -87,13 +85,13 @@ public class Array {
 
         String s = "[";
 
-        for (int i = 0; i < this.nextIndex-1; i++) { // the iteration will run until the second to last number, in order to not put a comma after the last.
+        for (int i = 0; i < this.size -1; i++) { // the iteration will run until the second to last number, in order to not put a comma after the last.
             s += this.elements[i];
             s += ", ";
         }
 
-        if (this.nextIndex > 0) {
-            s += this.elements[this.nextIndex-1]; // The last one will be appended just here.
+        if (this.size > 0) {
+            s += this.elements[this.size -1]; // The last one will be appended just here.
         }
 
         s += "]";
@@ -104,7 +102,7 @@ public class Array {
         Search method to get an element by its index.
      */
     public String search(int index){
-        if(!(index <= this.nextIndex && index >= 0)) { // Any index out of the array limits, or available but empty will throw an error
+        if(!(index <= this.size && index >= 0)) { // Any index out of the array limits, or available but empty will throw an error
           throw new IllegalArgumentException("Posição inválida");
         }
           return this.elements[index];
@@ -128,19 +126,28 @@ public class Array {
 
     public void add(int index, String element) {
 
-        if (index < 0 || index > this.nextIndex) {
+        increasesCapacity();
+
+        if (index < 0 || index > this.size) {
             throw new IllegalArgumentException("Posição inválida");
         }
 
-        if (this.nextIndex == this.elements.length) {
-            throw new IllegalStateException("Array cheio");
-        }
 
-        for (int i = this.nextIndex - 1; i >= index; i--) {
+        for (int i = this.size - 1; i >= index; i--) {
             this.elements[i + 1] = this.elements[i];
         }
 
         this.elements[index] = element;
-        this.nextIndex++;
+        this.size++;
+    }
+
+    private void increasesCapacity() {
+        if(this.size == this.elements.length) {
+            String[] newElements = new String[this.elements.length * 2];
+            for (int i = 0; i < this.elements.length; i++) {
+                newElements[i] = this.elements[i];
+            }
+            this.elements = newElements;
+        }
     }
 }
