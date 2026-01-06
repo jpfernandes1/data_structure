@@ -104,7 +104,7 @@ public class Array {
         Search method to get an element by its index.
      */
     public String search(int index){
-        if(!(index < this.nextIndex && index >= 0)) { // Any index out of the array limits, or available but empty will throw an error
+        if(!(index <= this.nextIndex && index >= 0)) { // Any index out of the array limits, or available but empty will throw an error
           throw new IllegalArgumentException("Posição inválida");
         }
           return this.elements[index];
@@ -120,6 +120,27 @@ public class Array {
             }
         }
             return false;
+    }
 
+    /*
+        Method for adding an element at a given index;
+     */
+
+    public void add(int index, String element) {
+
+        if (index < 0 || index > this.nextIndex) {
+            throw new IllegalArgumentException("Posição inválida");
+        }
+
+        if (this.nextIndex == this.elements.length) {
+            throw new IllegalStateException("Array cheio");
+        }
+
+        for (int i = this.nextIndex - 1; i >= index; i--) {
+            this.elements[i + 1] = this.elements[i];
+        }
+
+        this.elements[index] = element;
+        this.nextIndex++;
     }
 }
