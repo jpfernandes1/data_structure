@@ -1,12 +1,13 @@
 package com.structures.lists;
 
 import com.structures.lists.Array;
+import com.structures.utils.Contact;
 
 public class ArraysTest {
 
     public static void main(String[] args) throws Exception {
 
-        Array array = new Array(10);
+        Array<String> array = new Array<String>(10);
 
 
         try {
@@ -30,5 +31,38 @@ public class ArraysTest {
 
         array.remove(3);
         System.out.println(array.toString());
+
+
+        // ----- int vector -----
+
+        Array<Integer> array2 = new Array<Integer>(10);
+        array2.add(2);
+        array2.add(5);
+        array2.add(7);
+
+        System.out.println(array2.toString());
+
+
+        // ----- Object vector ------
+        Contact contact1 = new Contact("John", "john@test.com", "999");
+        Contact contact2 = new Contact("Mary", "mary@test.com", "999");
+        Contact contact3 = new Contact("Anna", "anna@test.com", "999");
+
+        Array<Contact> array3 = new Array<Contact>(5);
+        array3.add(contact1);
+        array3.add(contact2);
+        array3.add(contact3);
+
+        System.out.println(array3.toString());
+        System.out.println("Tamanho = " + array3.size());
+
+        boolean pos = array3.search(contact3);
+        if (pos) {
+            System.out.println("Element exists in vector");
+        } else {
+            System.out.println("Element does not exist in vector");
+        }
+
+
     }
 }
