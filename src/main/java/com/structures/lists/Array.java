@@ -109,4 +109,17 @@ public class Array {
         }
           return this.elements[index];
     }
+
+    /*
+        Method to verify if an element exists
+     */
+    public boolean search(String element){
+        for(int i=0; i<this.size(); i++){ // sequential search
+            if(this.elements[i].equals(element)){
+                return true;
+            }
+        }
+            return false;
+
+    }
 }
