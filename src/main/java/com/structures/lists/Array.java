@@ -150,4 +150,22 @@ public class Array {
             this.elements = newElements;
         }
     }
+
+    /*
+        Method for removing an element at a given index
+     */
+
+    public void remove(int index){
+        if(!(index >=0 && index < size)){
+            throw new IllegalArgumentException("Posição inválida");
+        }
+
+        for(int i=index; i<size-1; i++){
+            elements[i] = elements[i+1];
+        }
+
+        size--;
+    }
+
+
 }

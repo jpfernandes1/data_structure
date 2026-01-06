@@ -27,5 +27,8 @@ public class ArraysTest {
         array.add(3, "e");
         array.add(1, "e");
         System.out.println(array.toString());
+
+        array.remove(3);
+        System.out.println(array.toString());
     }
 }
