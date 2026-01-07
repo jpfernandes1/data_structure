@@ -1,7 +1,6 @@
-## Estrutura de dados
+## Data Structure
 
-### Listas
+This repository is based on Loyane Grooner's YouTube course.
 
-Também conhecidas como vetores ou arrays são as estruturas de dados mais simples.
-São o armazenamento de uma sequencia de valores do mesmo tipo.
+You can access it by clicking here: [Link](https://www.youtube.com/watch?v=N3K8PjFOhy4&list=PLGxZ4Rq3BOBrgumpzz-l8kFMw2DLERdxi&index=1)
 
