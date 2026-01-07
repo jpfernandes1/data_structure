@@ -69,6 +69,8 @@ public class ArraysTest {
         }
 
         System.out.println(array3.lastIndexOf(contact3));
+        array3.clear();
+        System.out.println(array3);
 
     }
 }

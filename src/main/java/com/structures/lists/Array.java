@@ -216,4 +216,28 @@ public class Array<T> {
            this.removeByIndex(index);
        }
     }
+
+    /*
+        This method eliminates all elements from the Array ;
+     */
+    public void clear(){
+
+        /* Option 1:
+        this.elements =  (T[]) new Object[this.size];
+         */
+
+        // Option 2: simpler (allows to overwrite the older elements);
+        this.size = 0;
+
+        /*
+            Option 3: reset all positions (less efficient)
+
+        for(int i=0; i<this.size; i++){
+            this.elements[i] = null;
+        }
+
+        this.size = 0;
+        */
+    }
+
 }
