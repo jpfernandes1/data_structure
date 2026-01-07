@@ -75,9 +75,9 @@ public class Array<T> {
      */
 
     public void add(T element) {
-       increasesCapacity();
-       this.elements[size] = element;
-       this.size++;
+        increasesCapacity();
+        this.elements[size] = element;
+        this.size++;
 
     }
 
@@ -85,7 +85,7 @@ public class Array<T> {
         Method to return the Array length
      */
 
-    public int size(){
+    public int size() {
         return this.size;
     }
 
@@ -98,13 +98,13 @@ public class Array<T> {
 
         String s = "[";
 
-        for (int i = 0; i < this.size -1; i++) { // the iteration will run until the second to last number, in order to not put a comma after the last.
+        for (int i = 0; i < this.size - 1; i++) { // the iteration will run until the second to last number, in order to not put a comma after the last.
             s += this.elements[i];
             s += ", ";
         }
 
         if (this.size > 0) {
-            s += this.elements[this.size -1]; // The last one will be appended just here.
+            s += this.elements[this.size - 1]; // The last one will be appended just here.
         }
 
         s += "]";
@@ -114,23 +114,36 @@ public class Array<T> {
     /*
         Search method to get an element by its index.
      */
-    public T search(int index){
-        if(!(index <= this.size && index >= 0)) { // Any index out of the array limits, or available but empty will throw an error
-          throw new IllegalArgumentException("Posição inválida");
+    public T search(int index) {
+        if (!(index <= this.size && index >= 0)) { // Any index out of the array limits, or available but empty will throw an error
+            throw new IllegalArgumentException("Posição inválida");
         }
-          return this.elements[index];
+        return this.elements[index];
     }
+
+    /*
+        Search method to get the index of an element
+     */
+    public int search(T element) {
+        for(int i=0;i<size;i++){
+            if(this.elements[i].equals(element)){
+                return i;
+            }
+        }
+            return -1;
+    }
+
 
     /*
         Method to verify if an element exists
      */
-    public boolean search(T element){
-        for(int i=0; i<this.size(); i++){ // sequential search
-            if(this.elements[i].equals(element)){
+    public boolean contains(T element) {
+        for (int i = 0; i < this.size(); i++) { // sequential search
+            if (this.elements[i].equals(element)) {
                 return true;
             }
         }
-            return false;
+        return false;
     }
 
     /*
@@ -155,7 +168,7 @@ public class Array<T> {
     }
 
     private void increasesCapacity() {
-        if(this.size == this.elements.length) {
+        if (this.size == this.elements.length) {
             T[] newElements = (T[]) new Object[this.elements.length * 2];
             for (int i = 0; i < this.elements.length; i++) {
                 newElements[i] = this.elements[i];
@@ -168,17 +181,39 @@ public class Array<T> {
         Method for removing an element at a given index
      */
 
-    public void remove(int index){
-        if(!(index >=0 && index < size)){
+    public void removeByIndex(int index) {
+        if (!(index >= 0 && index < size)) {
             throw new IllegalArgumentException("Posição inválida");
         }
 
-        for(int i=index; i<size-1; i++){
-            elements[i] = elements[i+1];
+        for (int i = index; i < size - 1; i++) {
+            elements[i] = elements[i + 1];
         }
 
         size--;
     }
 
+    /*
+        Returns the last occurrence of a given element;
+     */
+    public int lastIndexOf(T element) {
+        for (int i = this.size - 1; i >= 0; i--) {
+            if (this.elements[i].equals(element)) {
+                return i;
+            }
+        }
+            return -1;
+    }
 
+    /*
+        Remove an element by passing it as parameter
+
+     */
+
+    public void remove(T element){
+       int index = this.search(element);
+        if(index > -1){
+           this.removeByIndex(index);
+       }
+    }
 }

@@ -23,13 +23,14 @@ public class ArraysTest {
 
         System.out.println(array.search(2));
 
-        System.out.println(array.search("b"));
+        System.out.println(array.contains("b"));
 
         array.add(3, "e");
         array.add(1, "e");
         System.out.println(array.toString());
 
-        array.remove(3);
+        array.remove("e");
+        array.remove("a");
         System.out.println(array.toString());
 
 
@@ -40,6 +41,10 @@ public class ArraysTest {
         array2.add(5);
         array2.add(7);
 
+        System.out.println(array2.toString());
+
+        array2.remove(3);
+        array2.remove(5);
         System.out.println(array2.toString());
 
 
@@ -56,13 +61,14 @@ public class ArraysTest {
         System.out.println(array3.toString());
         System.out.println("Tamanho = " + array3.size());
 
-        boolean pos = array3.search(contact3);
+        boolean pos = array3.contains(contact3);
         if (pos) {
             System.out.println("Element exists in vector");
         } else {
             System.out.println("Element does not exist in vector");
         }
 
+        System.out.println(array3.lastIndexOf(contact3));
 
     }
 }
