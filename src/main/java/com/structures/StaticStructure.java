@@ -47,7 +47,7 @@ public class StaticStructure<T>{
         return true;
     }
 
-    private void increaseCapacity() {
+    protected void increaseCapacity() {
         if(this.size == this.elements.length) {
             T[] newElements = (T[]) new Object[this.elements.length*2];
             for(int i=0; i<this.elements.length; i++){
@@ -77,5 +77,30 @@ public class StaticStructure<T>{
             return s.toString();
     }
 
+    /*
+        Check if the stack has no elements;
+     */
+    public boolean isEmpty(){
+        return this.size() == 0;
+    }
 
+    /*
+        Shows the element at the top of the stack
+     */
+    protected T getLastElement() {
+        if (isEmpty()) {
+            return null;
+        }
+        return elements[size - 1];
+    }
+
+    protected T removeLastElement() {
+        if (isEmpty()) {
+            return null;
+        }
+        T element = elements[size - 1];
+        elements[size - 1] = null;
+        size--;
+        return element;
+    }
 }
