@@ -20,7 +20,7 @@ public class Contact {
     public Contact(){};
 
 
-    public Object getname(){
+    public Object getName(){
         return this.name;
     }
 
