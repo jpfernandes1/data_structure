@@ -85,21 +85,24 @@ public class StaticStructure<T>{
     }
 
     /*
-        Shows the element at the top of the stack
+        Shows the element by its index
      */
-    protected T getLastElement() {
+    protected T getElementByIndex(int index) {
         if (isEmpty()) {
             return null;
         }
-        return elements[size - 1];
+        return elements[index];
     }
 
-    protected T removeLastElement() {
-        if (isEmpty()) {
+    protected T remove(int index) {
+        if(isEmpty()) {
             return null;
         }
-        T element = elements[size - 1];
-        elements[size - 1] = null;
+
+        T element = elements[index];
+        for(int i=index; i<size-1; i++){
+            elements[i] = elements[i+1];
+        }
         size--;
         return element;
     }

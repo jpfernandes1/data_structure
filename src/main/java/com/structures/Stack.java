@@ -1,7 +1,5 @@
 package com.structures;
 
-import java.util.EmptyStackException;
-
 /*
     It is an Array that has the behavior LIFO: Last in, First Out;
  */
@@ -45,7 +43,8 @@ public class Stack<T> extends StaticStructure<T> {
      */
 
     public T peek() {
-       return super.getLastElement();
+       int pos = size() - 1;
+        return super.getElementByIndex(pos);
     }
 
     /*
@@ -53,7 +52,8 @@ public class Stack<T> extends StaticStructure<T> {
      */
 
     public T pop(){
-        return super.removeLastElement();
+        int pos = size() - 1;
+        return super.remove(pos);
     }
 
 
