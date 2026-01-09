@@ -40,4 +40,8 @@ public class Queue<T> extends StaticStructure<T> {
     public String toString(){
         return super.toString();
     }
+
+    public T[] getAllElements(){
+        return super.getElements();
+    }
 }

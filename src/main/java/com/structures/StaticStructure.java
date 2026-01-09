@@ -106,4 +106,8 @@ public class StaticStructure<T>{
         size--;
         return element;
     }
+
+    protected T[] getElements() {
+        return elements;
+    }
 }
