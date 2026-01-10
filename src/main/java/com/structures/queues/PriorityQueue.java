@@ -1,4 +1,4 @@
-package com.structures;
+package com.structures.queues;
 
 public class PriorityQueue<T> extends Queue<T> {
 

@@ -1,8 +1,10 @@
-package com.structures;
+package com.structures.queues;
 
 /*
     Queue is an Array that has the behavior FIFO: First in, First Out;
  */
+
+import com.structures.StaticStructure;
 
 public class Queue<T> extends StaticStructure<T> {
 

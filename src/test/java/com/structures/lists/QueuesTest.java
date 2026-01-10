@@ -1,6 +1,6 @@
 package com.structures.lists;
 
-import com.structures.Queue;
+import com.structures.queues.Queue;
 
 public class QueuesTest {
 

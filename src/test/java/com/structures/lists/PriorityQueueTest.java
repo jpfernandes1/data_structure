@@ -1,6 +1,6 @@
 package com.structures.lists;
 
-import com.structures.PriorityQueue;
+import com.structures.queues.PriorityQueue;
 import com.structures.utils.Patient;
 
 public class PriorityQueueTest {
