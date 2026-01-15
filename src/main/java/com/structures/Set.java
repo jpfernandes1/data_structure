@@ -1,4 +1,4 @@
-package com.structures.sets;
+package com.structures;
 
 /*
     A Set is a collection that does not allow duplicate elements. Its main characteristics are:
