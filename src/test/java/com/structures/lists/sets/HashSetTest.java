@@ -3,6 +3,24 @@ package com.structures.lists.sets;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+
+    This type of set does not maintain any kind of order, neither insertion nor natural.
+
+    Unique feature of HashSet:
+
+    Unpredictable order: The iteration order can change as the internal capacity is adjusted (rehashing)
+    Lower memory overhead than LinkedHashSet (does not need to store references for order)
+    Slightly better performance than LinkedHashSet (because it does not maintain additional links)
+
+    When to use HashSet:
+
+    When order doesn't matter
+    When you want maximum performance for add/remove/contains operations
+    When you need to allow null elements
+    When you don't need ordered iteration
+
+ */
 
 public class HashSetTest {
 
